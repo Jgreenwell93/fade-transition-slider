@@ -1,0 +1,58 @@
+<div id="slider-stage">
+
+    <div class="slider">
+        <img src="assets/images/slide1.webp" class="slide active" alt="Slide 1">
+        <img src="assets/images/slide2.webp" class="slide" alt="Slide 2">
+        <img src="assets/images/slide3.webp" class="slide" alt="Slide 3">
+    </div>
+
+    <style>
+        #slider-stage {
+            margin: 0;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slider {
+            position: relative;
+            width: 600px;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+            z-index: 1;
+        }
+    </style>
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentIndex = 0;
+        const slideDuration = 10000;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        setInterval(nextSlide, slideDuration);
+    </script>
+</div>
